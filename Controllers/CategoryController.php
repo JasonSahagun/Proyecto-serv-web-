@@ -14,7 +14,7 @@ class CategoryController extends Controller
             $photos = DB::table('pictures')->where('product_id', $cat ->id )->get();
             $cat ->photos = $photos;
         }
-        return view('/admin/categorias/list')->with('categorias',$categorias); //
+        return view('/admin/categorias/list')->with('categorias',$categorias); 
     }
 
     Public function crear(){
