@@ -1,0 +1,9 @@
+/* Show it is fixed to the top */
+body {
+  min-height: 75rem;
+  padding-top: 80px;
+}
+
+.table th, .table td {
+  padding: 0.75rem !important;
+}
