@@ -1,0 +1,41 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+class LoginController extends Controller
+{
+    // Muestra el formulario de login
+    public function show()
+    {
+        return view('login.index');
+    }
+
+    // Procesa el login
+    public function login(Request $request)
+    {
+        $request->validate([
+            'email'    => 'required|email',
+            'password' => 'required'
+        ]);
+
+        $credenciales = $request->only('email', 'password');
+
+        if (Auth::attempt($credenciales)) {
+            $request->session()->regenerate();
+            return redirect('/')->with('success', 'Inicio de sesión exitoso ✅');
+        }
+
+        return back()->with('error', 'Credenciales incorrectas ❌');
+    }
+
+    // Cerrar sesión
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        return redirect('/login')->with('success', 'Sesión cerrada.');
+    }
+}
