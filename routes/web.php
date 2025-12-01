@@ -29,11 +29,11 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/productos/catalogo',[ClienteProductoController::class,'catalogo'])-> name('products.list');
-Route::get('/productos/detalle/{id}',[ClienteProductoController::class,'detalle']);
+Route::get('/productos/catalogo',[ClienteProductoController::class,'catalogo'])-> name('products.list'); //esta es la vista cuando das click en la pestaña productos
+Route::get('/productos/detalle/{id}',[ClienteProductoController::class,'detalle']);//esta la vista de carrito 
 
-// Route::get('products', [ProductController::class, 'productList'])->name('products.list');
-Route::get('/cart', [CartController::class, 'cartList'])->name('cart.list');
+// RUTAS CARRITO 
+Route::get('/cart', [CartController::class, 'cartList'])->name('cart.list'); 
 Route::post('/cart', [CartController::class, 'addToCart'])->name('cart.store');
 Route::post('/update-cart', [CartController::class, 'updateCart'])->name('cart.update');
 Route::post('/remove', [CartController::class, 'removeCart'])->name('cart.remove');
@@ -42,10 +42,10 @@ Route::post('/order', [CartController::class, 'hacerPedido'])->name('cart.order'
 
 
 //RUTAS CATEGORIAS
-Route::view('/categorias', '/admin/categorias/list');
+Route::view('/categorias', '/admin/categorias/list');//esta es la vista de categorias
 Route::view('/categorias/crear', '/admin/categorias/create');
 
-Route::get('/categorias',[CategoryController::class, 'indice'])->name('categorias.list');
+Route::get('/categorias',[CategoryController::class, 'indice'])->name('categorias.list'); 
 Route::get('/categorias/crear',[CategoryController::class,'crear'])->name('categorias.create');
 Route::post('/categorias',[CategoryController::class,'guardar'])->name('categorias.save');
 Route::get('/categorias/editar/{id}',[CategoryController::class,'editar'])->name('categorias.edit');
@@ -53,8 +53,8 @@ Route::put('/categorias/{id}',[CategoryController::class,'actualizar'])->name('c
 Route::get('/categorias/mostrar/{id}',[CategoryController::class,'mostrar'])->name('categorias.show');
 Route::delete('/categorias/{id}',[CategoryController::class,'borrar'])->name('categorias.delete');
 
-//RUTAS proveedor
-Route::view('/proveedor', '/admin/proveedor/list');
+//RUTAS PROVEEDOR
+Route::view('/proveedor', '/admin/proveedor/list');//esta es la vista de proveedores
 Route::view('/proveedor/crear', '/admin/proveedor/create');
 
 Route::get('/proveedor',[ProvidersController::class, 'indice'])->name('providers.list');
@@ -65,11 +65,11 @@ Route::put('/proveedor/{id}',[ProvidersController::class,'actualizar'])->name('p
 Route::get('/proveedor/mostrar/{id}',[ProvidersController::class,'mostrar'])->name('providers.show');
 Route::delete('/proveedor/{id}',[ProvidersController::class,'borrar'])->name('providers.delete');
 
-//RUTAS orden
-Route::view('/orden', '/admin/orden/list');
+//RUTAS ORDEN
+Route::view('/orden', '/admin/orden/list'); //esta es la vista de ordenes 
 Route::view('/orden/crear', '/admin/orden/create');
 
-Route::get('/orden',[OrdersController::class, 'indice'])->name('orders.list');
+Route::get('/orden',[OrdersController::class, 'indice'])->name('orders.list'); 
 Route::get('/orden/editar/{id}',[OrdersController::class,'editar'])->name('orders.edit');
 Route::put('/orden/{id}',[OrdersController::class,'actualizar'])->name('orders.update');
 Route::get('/orden/mostrar/{id}',[OrdersController::class,'mostrar'])->name('orders.show');
