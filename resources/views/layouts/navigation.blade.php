@@ -13,8 +13,8 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                 
-                    {{-- agregamos   --}}
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    {{-- agregamos las pestañas de nuestro sitio web --}}
+                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')"> 
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     <x-nav-link :href="route('products.list')" :active="request()->routeIs('products.list')">
@@ -33,12 +33,12 @@
                         <svg class="w-5 h-5 text-purple-600" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                             <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
                         </svg>
-                    <span class="text-red-700">{{ Cart::getTotalQuantity()}}</span>
+                    <span class="text-red-700">{{ Cart::getTotalQuantity()}}</span>  <!--esto nos muestra la cantidad total de los productos -->
                     </a>
                 </div>
             </div>
             
-            <!-- Settings Dropdown -->
+            <!-- Settings Dropdown ESTE es para el cierre de sesion-->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
