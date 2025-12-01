@@ -1,0 +1,50 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
+
+class RegistroController extends Controller
+{
+    public function create()
+    {
+        return view('registro.index');
+    }
+
+    // Store para web y API (Postman)
+    public function store(Request $request)
+    {
+        // Validación (mismo nombre de campos que envio desde Postman)
+        $data = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'phone' => 'required|digits_between:7,15', 
+            'password' => 'required|min:6|confirmed',
+        ]);
+
+        // Crear usuario
+        $user = new User();
+        $user->name = $data['name'];
+        $user->email = $data['email'];
+        $user->phone = $data['phone'];
+        $user->password = Hash::make($data['password']);
+        $user->save();
+
+        if ($request->expectsJson()) {
+            return response()->json([
+                'message' => 'Usuario registrado correctamente',
+                'user' => [
+                    'id' => $user->id,
+                    'name' => $user->name,
+                    'email' => $user->email,
+                ]
+            ], 201);
+        }
+
+        
+        return redirect()->route('registro.crear')->with('success', 'Registro completado con éxito');
+    }
+}
