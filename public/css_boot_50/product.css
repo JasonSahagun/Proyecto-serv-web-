@@ -2,9 +2,65 @@
   max-width: 960px;
 }
 
-/*
- * Custom translucent site header
- */
+.icon-link > .bi {
+  width: .75em;
+  height: .75em;
+}
+
+.imagen-procesador,
+.imagen-memoria_Ram,
+.imagen-almacenamiento,
+.imagen-tarjetaGr,
+.imagen-fuentePo,
+.imagen-gabinete,
+.imagen-refrijeracion,
+.imagen-pcA,
+.imagen-tienda {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    border-radius: 21px 21px 0 0;
+}
+
+/* Contenedores de imágenes más flexibles */
+.bg-light.shadow-sm.mx-auto,
+.bg-dark.shadow-sm.mx-auto,
+.bg-body.shadow-sm.mx-auto {
+    min-height: 300px;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+/* Enlaces deben ocupar todo el contenedor */
+.bg-light.shadow-sm.mx-auto a,
+.bg-dark.shadow-sm.mx-auto a,
+.bg-body.shadow-sm.mx-auto a {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+    .bg-light.shadow-sm.mx-auto,
+    .bg-dark.shadow-sm.mx-auto,
+    .bg-body.shadow-sm.mx-auto {
+        width: 90% !important;
+        min-height: 250px;
+    }
+}
+
+/* Efectos hover para mejor interactividad */
+.botones-imagen:hover {
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
 
 .site-header {
   background-color: rgba(0, 0, 0, .85);

@@ -1,52 +1,35 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Lista de Categorias') }}
-        </h2>
-    </x-slot>
+@extends('/admin/plantilla/layout')
 
-    <div class="py-12">
-      <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-            <div class="p-6 text-gray-900">
-              
-              <!-- Aquí comienza la tabla -->
-                <table class="min-w-full divide-y divide-gray-200">
-                  <a class="px-3 py-1 bg-blue-600 text-white rounded-md hover:bg-blue-700" href="/categorias/crear">Crear Categoria</a>
-                  <thead class="bg-gray-50">
-                    <tr>
-                      <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
-                      <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nombre</th>
-                      <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
-                    
-                    </tr>
-                  </thead>
-                    <tbody class="bg-white divide-y divide-gray-200">
-                      @foreach ($categorias as $Cat)
-                    <tr>
-                      <td class="px-6 py-4 whitespace-nowrap">{{ $Cat->id }}</td>
-                      <td class="px-6 py-4 whitespace-nowrap">{{ $Cat->name }}</td>
-                      <td class="px-6 py-4 whitespace-nowrap">{{ $Cat->description }}</td>
-                      
-                        <!-- Enlaces para ver, editar, etc. -->
-                      
-                      <td>
-                        <a class="px-3 py-1 bg-green-600 text-white rounded-md hover:bg-green-700" href="/categorias/editar/{{ $Cat->id }}">Editar</a>
-                        <a class="px-3 py-1 bg-red-600 text-white rounded-md hover:bg-red-700"href="/categorias/mostrar/{{ $Cat->id }}"> Borrar</a>
-                      </td>
-                      
-                      {{-- <td>
-                        <a class="px-3 py-1 bg-red-600 text-white rounded-md hover:bg-red-700"href="/categorias/mostrar/{{ $Cat->id }}"> Borrar</a>
-                      </td>
-                    </tr> --}}
+@section('titulo'.'LISTADO DE CATEGORIAS')
+    
+@section('contenido')
 
-                      @endforeach
-                    </tbody>
-                  </table>
-                </div>
-          </div>
-        </div>
-    </div>
-</x-app-layout>
+<div class="col-12" >
+    <a class="btn btn-primary" href="/categorias/crear">Crear Categorias</a>
 
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Descripcion</th>
+      <th scope="col">Imagen</th>
+      <th scope="col">Editar</th>
+      <th scope="col">Borrar</th>
+    </tr>
+  </thead>
+  <tbody>
+        @foreach($categorias as $categoria)
+    <tr>
+      <th scope="row">{{$categoria->id}}</th>
+      <td>{{$categoria->name}}</td>
+      <td>{{$categoria->description}}</td>
+      <td><img src="{{$categoria->picture}}" alt="{{$categoria->picture}}" width="150"></td>
+      <td> <a href="/categorias/editar/{{$categoria->id}}"> editar </td>
+      <td> <a href="/categorias/mostrar/{{$categoria->id}}"> borrar</td>
+    </tr>
+    @endforeach
+  </tbody>
+</table>
 
+@endsection
