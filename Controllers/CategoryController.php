@@ -67,11 +67,10 @@ class CategoryController extends Controller
             ->with('categorias',$categorias)
             ->with('mensaje','registro realizado');
     }
-
+    
     Public function editar($id){
         //Aqui primero solicitamos la categoria por id y despues retornamos la vista edith con los datos asociados a esa id 
         $categoria=DB::table('categories')->where('id',$id)->first();
-        
         return view('/admin/categorias/edith') -> with ('categoria',$categoria );  //
     }
     //aqui editamos la info y la imagen y la actualizamos 
@@ -81,9 +80,7 @@ class CategoryController extends Controller
             'name' => $request -> name,
             'description' => $request -> description,
             'picture' =>  $request -> picture,
-        
         ]);
-
         if($request->hasFile('picture')){
             $ruta='/imagenes/categoria';
             $extension=$request->picture->extension();
