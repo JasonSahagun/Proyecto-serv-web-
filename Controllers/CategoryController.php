@@ -17,9 +17,9 @@ class CategoryController extends Controller
         //Nos retorna a vista de lista de categorias
         return view('/admin/categorias/list')->with('categorias',$categorias);  
     }
-
+    //Nos manda al blade de creacion de categoria
     Public function crear(){
-        return view('/admin/categorias/create'); //
+        return view('/admin/categorias/create');  
     }
 
     Public function guardar(Request $request){
