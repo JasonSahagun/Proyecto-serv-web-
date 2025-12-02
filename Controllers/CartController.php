@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+
 class CartController extends Controller
 {
     public function cartList()
@@ -53,7 +54,6 @@ class CartController extends Controller
     public function clearAllCart()
     {
         \Cart::clear();
-
         session()->flash('success', 'All Item Cart Clear Successfully !');
         return redirect()->route('cart.list');
     }
