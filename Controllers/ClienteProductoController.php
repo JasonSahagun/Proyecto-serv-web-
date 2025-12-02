@@ -17,12 +17,6 @@ class ClienteProductoController extends Controller
     public function detalle($id){
         $products=DB::table('products')->where('id', $id)->where('status','ACTIVO')->get();
         return view('/productos/detalle')->with ('product',$products);
-        
-    //   public function detalle($id){
-    //   $products=DB::table('products')->where('id', $id)->where('status','ACTIVO')->get();
-    //   return view('/productos/detalle')->with ('product',$products);
-    // }
-        
-    
+
     }
 }
