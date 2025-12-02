@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 class CartController extends Controller
@@ -12,7 +11,6 @@ class CartController extends Controller
         // dd($cartItems);
         return view('productos/cart', compact('cartItems'));
     }
-
 
     public function addToCart(Request $request)
     {
@@ -41,9 +39,7 @@ class CartController extends Controller
                 ],
             ]
         );
-
         session()->flash('success', 'Item Cart is Updated Successfully !');
-
         return redirect()->route('cart.list');
     }
 
@@ -51,16 +47,14 @@ class CartController extends Controller
     {
         \Cart::remove($request->id);
         session()->flash('success', 'Item Cart Remove Successfully !');
-
         return redirect()->route('cart.list');
     }
-
+    
     public function clearAllCart()
     {
         \Cart::clear();
 
         session()->flash('success', 'All Item Cart Clear Successfully !');
-
         return redirect()->route('cart.list');
     }
 
@@ -71,12 +65,9 @@ class CartController extends Controller
             'customer_id'=>1 ,
             'fecha_compra' => now(),
             'total' => 0,
-            // 'precio'=> $producto['price'],
             'created_at'=> now(),
             'updated_at'=>now(),
-            
         ]);
-        
         $total=0;
         foreach ($cartItems as $producto){
             //dd($producto);
@@ -99,22 +90,14 @@ class CartController extends Controller
             'updated_at' => now(),
         ]);
         }
-
         DB::table('orders') -> where('id',$order_id)
         ->update([
             'total' => $total,
             'updated_at' => now(),
         ]);
 
-        //echo "pedido realizado";
-        
         \Cart::clear();
-
         session()->flash('success', 'Pedido Realizado');
         return redirect()->route('cart.list');
-    
-
-
-    
     }
 }
